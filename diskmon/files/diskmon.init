@@ -1,0 +1,30 @@
+#!/bin/sh /etc/rc.common
+
+START=95
+STOP=10
+
+USE_PROCD=1
+PROG=/usr/bin/diskmon
+
+start_instance() {
+	local cfg="$1"
+	local drive
+	local led
+
+	config_get drive "$cfg" target_drive
+	config_get led "$cfg" led_path
+
+	# Ensure both options are provided
+	[ -z "$drive" ] || [ -z "$led" ] && return
+
+	# Start diskmon daemon using procd
+	procd_open_instance
+	procd_set_param command "$PROG" "$drive" "$led"
+	procd_set_param respawn # Restart automatically if it crashes
+	procd_close_instance
+}
+
+start_service() {
+	config_load diskmon
+	config_foreach start_instance drive
+}
