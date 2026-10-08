@@ -1,0 +1,11 @@
+{
+	"luci-app-hdd-led-monitor": {
+		"description": "Grant access to HDD LED Monitor configuration",
+		"read": {
+			"uci": [ "hdd_led" ]
+		},
+		"write": {
+			"uci": [ "hdd_led" ]
+		}
+	}
+}

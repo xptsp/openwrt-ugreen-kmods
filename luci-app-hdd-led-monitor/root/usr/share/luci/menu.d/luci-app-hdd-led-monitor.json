@@ -1,0 +1,13 @@
+{
+	"admin/services/hdd_led_monitor": {
+		"title": "HDD LED Monitor",
+		"order": 60,
+		"action": {
+			"type": "view",
+			"path": "hdd_led_monitor"
+		},
+		"depends": {
+			"acl": [ "luci-app-hdd-led-monitor" ]
+		}
+	}
+}
